@@ -202,9 +202,4 @@ function deleteProduct(this: GlobalEventHandlers) {
 
 
 addProducts();
-// const cardBody = document.createElement.
 
-// const button = document.querySelector('#add') as HTMLButtonElement;
-// console.log(button);
-
-// console.log(card);

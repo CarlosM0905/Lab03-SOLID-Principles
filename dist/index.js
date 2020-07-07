@@ -136,7 +136,3 @@ function deleteProduct() {
     buyPrice.innerText = `$ ${presale.getTotalPrice().toString()}`;
 }
 addProducts();
-// const cardBody = document.createElement.
-// const button = document.querySelector('#add') as HTMLButtonElement;
-// console.log(button);
-// console.log(card);
