@@ -4,9 +4,9 @@ export class Mouse extends Component implements iInputDevice{
     readData: Function;
     
     constructor(){
-        super(20, "Ryzen", "Mouse de Quality v:");
+        super(20, "Ryzen", "Mouse óptico gamer", "./img/mouse.png");
         this.readData = () => {
-            console.log("Has hecho muchos clicks manin :v")
+            console.log("Has realizado muchos clicks");
         }
     }
 }

@@ -2,10 +2,12 @@ export class Component{
     private _price: number;
     private _brand: string;
     private _name: string;
-    constructor (price: number, brand: string, name: string){
+    private _image: string;
+    constructor (price: number, brand: string, name: string, image: string){
         this._price = price;
         this._brand = brand;
         this._name = name;
+        this._image = image;
     }
 
     get price(): number{
@@ -31,5 +33,14 @@ export class Component{
     set name(name: string){
         this._name = name;
     }
+
+    get image(): string{
+        return this._image;
+    }
+
+    set image(image: string){
+        this._image = image;
+    }
+
 }
 

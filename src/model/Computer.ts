@@ -24,7 +24,6 @@ export class Computer implements iVerifier{
                 if(type == 'Special'){
                     countSpecial += 2;
                 }
-
             }
 
             if(countProcessor == 0){

@@ -23,6 +23,7 @@ function addProducts() {
       processor.brand,
       processor.name,
       processor.price,
+      processor.image,
       "Processor",
       "show"
     );
@@ -34,6 +35,7 @@ function addProducts() {
       input.brand,
       input.name,
       input.price,
+      input.image,
       "Input",
       "show"
     );
@@ -45,6 +47,7 @@ function addProducts() {
       output.brand,
       output.name,
       output.price,
+      output.image,
       "Output",
       "show"
     );
@@ -56,6 +59,7 @@ function addProducts() {
       special.brand,
       special.name,
       special.price,
+      special.image,
       "Special",
       "show"
     );
@@ -67,6 +71,7 @@ function createCardProduct(
   name: string,
   description: string,
   price: number,
+  img: string,
   type: string,
   mode: string
 ) {
@@ -104,10 +109,11 @@ function createCardProduct(
   addButton.setAttribute("data-description", description);
   addButton.setAttribute("data-price", price.toString());
   addButton.setAttribute("data-type", type);
+  addButton.setAttribute("data-img",img);
 
   let imgProduct = document.createElement("img") as HTMLImageElement;
   imgProduct.classList.add("img-fluid");
-  imgProduct.src = "https://via.placeholder.com/100";
+  imgProduct.src = img;
 
   cardColInfo.appendChild(titleProduct);
   cardColInfo.appendChild(descriptionProduct);
@@ -132,13 +138,15 @@ function selectProduct(this: GlobalEventHandlers) {
   );
   let priceData = (this as HTMLButtonElement).getAttribute("data-price");
   let typeData = (this as HTMLButtonElement).getAttribute("data-type");
+  let imgData = (this as HTMLButtonElement).getAttribute("data-img");
 
   let brand = brandData ? brandData : "";
   let description = descriptionData ? descriptionData : "";
   let price = priceData ? Number.parseFloat(priceData) : 0.0;
   let type = typeData ? typeData : "";
+  let img = imgData ? imgData: "";
 
-  let component: Component = new Component(price, brand, description);
+  let component: Component = new Component(price, brand, description, img);
 
   computer.addComponent(component, type);
 
@@ -151,7 +159,7 @@ function selectProduct(this: GlobalEventHandlers) {
   presale.components = computer.components;
   buyPrice.innerText = `$ ${presale.getTotalPrice().toString()}`;
 
-  let cardBuy = createCardProduct(brand, description, price, type, "buy");
+  let cardBuy = createCardProduct(brand, description, price, img, type, "buy");
   listBuyProducts?.appendChild(cardBuy);
 }
 
@@ -169,13 +177,16 @@ function deleteProduct(this: GlobalEventHandlers) {
   );
   let priceData = (this as HTMLButtonElement).getAttribute("data-price");
   let typeData = (this as HTMLButtonElement).getAttribute("data-type");
+  let imgData = (this as HTMLButtonElement).getAttribute("data-img");
+
 
   let brand = brandData ? brandData : "";
   let description = descriptionData ? descriptionData : "";
   let price = priceData ? Number.parseFloat(priceData) : 0.0;
   let type = typeData ? typeData : "";
+  let img = imgData ? imgData: "";
 
-  let component: Component = new Component(price, brand, description);
+  let component: Component = new Component(price, brand, description, img);
 
   computer.removeComponent(component);
 

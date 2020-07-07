@@ -7,7 +7,7 @@ export class TouchScreen extends Component implements iInputDevice, iOutputDevic
     writeData: Function;
    
     constructor(){
-        super(265, "AOC", "Pantalla tactil nueva :v")
+        super(265, "AOC", "Pantalla tactil 24'", "./img/touch_screen.png")
         this.readData = ()=>{
             console.log("Leyendo de la pantalla");
         }

@@ -1,8 +1,9 @@
 export class Component {
-    constructor(price, brand, name) {
+    constructor(price, brand, name, image) {
         this._price = price;
         this._brand = brand;
         this._name = name;
+        this._image = image;
     }
     get price() {
         return this._price;
@@ -21,5 +22,11 @@ export class Component {
     }
     set name(name) {
         this._name = name;
+    }
+    get image() {
+        return this._image;
+    }
+    set image(image) {
+        this._image = image;
     }
 }

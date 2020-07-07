@@ -16,23 +16,23 @@ let presale = new Presale();
 let computer = new Computer();
 function addProducts() {
     for (let processor of dbProcessor) {
-        let card = createCardProduct(processor.brand, processor.name, processor.price, "Processor", "show");
+        let card = createCardProduct(processor.brand, processor.name, processor.price, processor.image, "Processor", "show");
         listProcessors === null || listProcessors === void 0 ? void 0 : listProcessors.appendChild(card);
     }
     for (let input of dbInput) {
-        let card = createCardProduct(input.brand, input.name, input.price, "Input", "show");
+        let card = createCardProduct(input.brand, input.name, input.price, input.image, "Input", "show");
         listInputs === null || listInputs === void 0 ? void 0 : listInputs.appendChild(card);
     }
     for (let output of dbOutput) {
-        let card = createCardProduct(output.brand, output.name, output.price, "Output", "show");
+        let card = createCardProduct(output.brand, output.name, output.price, output.image, "Output", "show");
         listOutputs === null || listOutputs === void 0 ? void 0 : listOutputs.appendChild(card);
     }
     for (let special of dbInputOutput) {
-        let card = createCardProduct(special.brand, special.name, special.price, "Special", "show");
+        let card = createCardProduct(special.brand, special.name, special.price, special.image, "Special", "show");
         listSpecials === null || listSpecials === void 0 ? void 0 : listSpecials.appendChild(card);
     }
 }
-function createCardProduct(name, description, price, type, mode) {
+function createCardProduct(name, description, price, img, type, mode) {
     let card = document.createElement("div");
     card.classList.add("card");
     card.style.width = "100%";
@@ -68,9 +68,10 @@ function createCardProduct(name, description, price, type, mode) {
     addButton.setAttribute("data-description", description);
     addButton.setAttribute("data-price", price.toString());
     addButton.setAttribute("data-type", type);
+    addButton.setAttribute("data-img", img);
     let imgProduct = document.createElement("img");
     imgProduct.classList.add("img-fluid");
-    imgProduct.src = "https://via.placeholder.com/100";
+    imgProduct.src = img;
     cardColInfo.appendChild(titleProduct);
     cardColInfo.appendChild(descriptionProduct);
     cardColInfo.appendChild(priceProduct);
@@ -87,11 +88,13 @@ function selectProduct() {
     let descriptionData = this.getAttribute("data-description");
     let priceData = this.getAttribute("data-price");
     let typeData = this.getAttribute("data-type");
+    let imgData = this.getAttribute("data-img");
     let brand = brandData ? brandData : "";
     let description = descriptionData ? descriptionData : "";
     let price = priceData ? Number.parseFloat(priceData) : 0.0;
     let type = typeData ? typeData : "";
-    let component = new Component(price, brand, description);
+    let img = imgData ? imgData : "";
+    let component = new Component(price, brand, description, img);
     computer.addComponent(component, type);
     if (computer.verifyRequirements()) {
         btnBuy.disabled = false;
@@ -101,7 +104,7 @@ function selectProduct() {
     }
     presale.components = computer.components;
     buyPrice.innerText = `$ ${presale.getTotalPrice().toString()}`;
-    let cardBuy = createCardProduct(brand, description, price, type, "buy");
+    let cardBuy = createCardProduct(brand, description, price, img, type, "buy");
     listBuyProducts === null || listBuyProducts === void 0 ? void 0 : listBuyProducts.appendChild(cardBuy);
 }
 function deleteProduct() {
@@ -115,11 +118,13 @@ function deleteProduct() {
     let descriptionData = this.getAttribute("data-description");
     let priceData = this.getAttribute("data-price");
     let typeData = this.getAttribute("data-type");
+    let imgData = this.getAttribute("data-img");
     let brand = brandData ? brandData : "";
     let description = descriptionData ? descriptionData : "";
     let price = priceData ? Number.parseFloat(priceData) : 0.0;
     let type = typeData ? typeData : "";
-    let component = new Component(price, brand, description);
+    let img = imgData ? imgData : "";
+    let component = new Component(price, brand, description, img);
     computer.removeComponent(component);
     if (computer.verifyRequirements()) {
         btnBuy.disabled = false;
